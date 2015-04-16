@@ -181,7 +181,7 @@ class WidgetCodeGenerator(object):
         }
  
     def get_view_class_code(self):
-        return ''.join(['from PySide import QtGui\nfrom gen.ui_MainView import Ui_MainView\n\nclass MainView(QtGui.QMainWindow):'])
+        return ''.join(['from PyQt5 import QtWidgets\nfrom gen.ui_MainView import Ui_MainView\n\nclass MainView(QtWidgets.QMainWindow):'])
     
     def get_value_property_code(self, widget_data):
         return ''.join(['\n    @property\n    def ',
@@ -284,7 +284,7 @@ class WidgetCodeGenerator(object):
             return ''
 
     def get_ctrl_class_code(self):
-        return ''.join(['from PySide import QtGui\n\nclass MainController(object):\n\n',
+        return ''.join(['from PyQt5 import QtWidgets\n\nclass MainController(object):\n\n',
                         '    def __init__(self, model):\n',
                         '        self.model = model\n\n'
         ])
@@ -307,7 +307,7 @@ class WidgetCodeGenerator(object):
             return ''
     
     def get_model_class_code(self):
-        return ''.join(['from PySide import QtGui\n\nclass Model(object):\n\n'])
+        return ''.join(['from PyQt5 import QtGui\n\nclass Model(object):\n\n'])
     
     
     def get_model_qt_model_property_code(self, widget_data):
@@ -352,7 +352,7 @@ class WidgetCodeGenerator(object):
         if widget_data['widget_name'].startswith('comboBox'):
             return ''.join(['\n        self.',
                             widget_data['variable_name'],
-                            '_model = QtGui.QStringListModel()'])
+                            '_model = Qt.QStringListModel()'])
         else:
             return ''
 
@@ -369,11 +369,11 @@ class WidgetCodeGenerator(object):
     
     def get_app_code(self):
         return ''.join(['import sys\n',
-                        'from PySide import QtGui\n',
+                        'from PyQt5 import Qt\n',
                         'from model.Model import Model\n',
                         'from ctrls.MainController import MainController\n',
                         'from views.MainView import MainView\n\n',
-                        'class App(QtGui.QApplication):\n',
+                        'class App(Qt.QApplication):\n',
                         '    def __init__(self, sys_argv):\n',
                         '        super(App, self).__init__(sys_argv)\n',
                         '        self.model = Model()\n',
@@ -410,7 +410,7 @@ class WidgetCodeGenerator(object):
                                         'variable_name'     : variable_name,
                                         'func_names'        : self.widget_types[widget_type]})
                 else:
-                    print 'WARNING: UNKNOWN WIDGET TYPE:', widget_type
+                    print('WARNING: UNKNOWN WIDGET TYPE:', widget_type)
                 
         # get generated code
         output = []
