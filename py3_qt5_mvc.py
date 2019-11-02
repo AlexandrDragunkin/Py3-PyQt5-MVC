@@ -157,7 +157,7 @@ class WidgetCodeGenerator(object):
                               'config_read': 'getfloat'},
             'horizontalSlider': None,  # todo
             'verticalSlider': None,  # todo
-            # display widgets
+            # отображать виджеты
             'label': {'read_value': 'text',
                       'write_value': 'setText',
                       'value_signal': None,
@@ -168,7 +168,7 @@ class WidgetCodeGenerator(object):
                             'value_signal': 'valueChanged',
                             'value_signal_arg': 'value',
                             'config_read': 'getint'},
-            # other
+            # другое
             'action': {'read_value': 'isChecked',
                        'write_value': 'setChecked',
                        'value_signal': 'triggered',
@@ -250,7 +250,7 @@ class WidgetCodeGenerator(object):
 
     def get_update_ui_code(self):
         return ''.join(['    def update_ui_from_model(self):\n',
-                        "        print('DEBUG: update_ui_from_model called')\n", ])
+                        "        print('DEBUG: вызывается update_ui_from_model')\n", ])
 
     def get_view_update_code(self, widget_data):
         return ''.join(['\n        self.',
@@ -302,7 +302,7 @@ class WidgetCodeGenerator(object):
                             widget_data['func_names']['value_signal_arg'],
                             "\n        print('DEBUG: change_",
                             widget_data['variable_name'],
-                            " called with arg value:', ",
+                            " вызывается со значением arg:', ",
                             widget_data['func_names']['value_signal_arg'],
                             ')'])
         else:
